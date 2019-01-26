@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Patient Reports</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<table class="table table-bordered table-hover"
+			data-th-each="patientDTO : ${patientDTOs}">
+			<thead class="thead-light">
+				<tr bgcolor="#DCDCDC">
+					<td scope="col" colspan="2">
+						<div class="row">
+							<div class="col col-xs-12" align="center">
+								<b>Patient Name</b> - <span
+									data-th-text="|${patientDTO.patientName.firstName} ${patientDTO.patientName.lastName}|"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col col-xs-12" align="center">
+								<b>Age</b> - <span data-th-text="${patientDTO.age}"></span>
+								Years
+							</div>
+						</div>
+						<div class="row">
+							<div class="col col-xs-12" align="center">
+								Diagnostic Test date: <span
+									data-th-text="${patientDTO.testDate}"></span>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</thead>
+			<thead>
+				<tr bgcolor="#FCFCFC">
+					<th scope="col">Test name</th>
+					<th scope="col">Cost</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="test : ${patientDTO.tests}">
+					<td scope="row" data-th-text="${test.name}">Test Name</td>
+					<td data-th-text="${test.cost}">Cost</td>
+				</tr>
+				<tr>
+					<td scope="row" bgcolor="#FCFCFC">Total</td>
+					<td data-th-text=${patientDTO.totalCost}>Total Cost</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<button class="btn btn-danger" id="cancelButton"
+		onclick="window.location.href='/hospital/home'"
+		style="position: fixed; left: 40px; bottom: 30px;">Cancel</button>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Add Test Details</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="heading" style="padding: 30px 0px;">
+			<h2>Fill the form to add new test.</h2>
+		</div>
+		<div class="container border border-secondary rounded"
+			style="padding: 40px;">
+			<form action="#" th:action="@{/hospital/home}"
+				th:object="${patientTestDTO}" method="post">
+				<div class="form-group row">
+					<label for="patientCustomSelect"
+						class="col col-md-1 col-form-label"><b>Patient:</b></label>
+					<div class="col col-md-11">
+						<select class="custom-select" id="patientCustomSelect"
+							th:field="*{patientId}" required>
+							<option class="dropdown-header" value="" selected>Select
+								Patient</option>
+							<option class="dropdown-item" th:each="patient : ${patients}"
+								th:value="${patient.patientId}"
+								th:text="|${patient.patientName.firstName} ${patient.patientName.lastName}|"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="testCustomSelect" class="col col-md-1 col-form-label"><b>Test:</b></label>
+					<div class="col col-md-11">
+						<select class="custom-select" id="testCustomSelect"
+							th:field="*{testId}" required>
+							<option class="dropdown-header" value="">Select Test</option>
+							<option class="dropdown-item" th:each="test : ${tests}"
+								th:value="${test.testId}" th:text="${test.name}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="value" class="col col-md-1 col-form-label"><b>Value:</b></label>
+					<div class="col col-md-11">
+						<div class="form-group dropdown" id="value">
+							<input class="form-control" type="number" name="value"
+								th:field="*{value}" required>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="comments" class="col col-md-1 col-form-label"><b>Comment:</b></label>
+					<div class="col col-md-11">
+						<div class="form-group dropdown" id="comments">
+							<textarea class="form-control" th:field="*{comment}" required></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row" align="center">
+					<div class="col col-xs-6">
+						<button type="submit" class="btn btn-success" id="addButton">Add</button>
+					</div>
+					<div class="col col-xs-6">
+						<button type="reset"
+							onClick="window.location.href='/hospital/home'"
+							class="btn btn-danger">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+</body>
+</html>
